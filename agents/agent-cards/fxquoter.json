@@ -1,0 +1,11 @@
+{
+  "type": "agent",
+  "name": "FXQuoter v1.0",
+  "description": "Real-time FX rate oracle for USDC/EURC pairs on Arc. Provides swap quotes and settlement routing.",
+  "image": "",
+  "endpoints": [{"name": "A2A", "endpoint": "https://stratum.dev/agents/fxquoter/a2a", "version": "0.3.0"}],
+  "x402Support": true,
+  "active": true,
+  "registrations": [],
+  "supportedTrust": ["reputation"]
+}

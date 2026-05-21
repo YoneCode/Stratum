@@ -1,0 +1,11 @@
+{
+  "type": "agent",
+  "name": "Summarizer v1.0",
+  "description": "Document summarization agent — condenses legal briefs, whitepapers, and reports into actionable bullet points.",
+  "image": "",
+  "endpoints": [{"name": "A2A", "endpoint": "https://stratum.dev/agents/summarizer/a2a", "version": "0.3.0"}],
+  "x402Support": true,
+  "active": true,
+  "registrations": [],
+  "supportedTrust": ["reputation"]
+}
