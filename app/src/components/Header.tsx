@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Home" },
   { href: "/agents", label: "Agents" },
   { href: "/jobs", label: "Jobs" },
   { href: "/jobs/new", label: "Post Job" },
@@ -14,9 +12,6 @@ const NAV_ITEMS = [
 
 export function Header() {
   const pathname = usePathname();
-  const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
-  const { disconnect } = useDisconnect();
 
   return (
     <header className="border-b border-neutral-800 bg-neutral-950/80 backdrop-blur-sm sticky top-0 z-50">
@@ -26,7 +21,7 @@ export function Header() {
             Stratum
           </Link>
           <nav className="hidden md:flex items-center gap-1">
-            {NAV_ITEMS.slice(1).map(({ href, label }) => (
+            {NAV_ITEMS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
@@ -41,23 +36,10 @@ export function Header() {
             ))}
           </nav>
         </div>
-
         <div>
-          {isConnected ? (
-            <button
-              onClick={() => disconnect()}
-              className="rounded-md bg-neutral-800 px-3 py-1.5 text-xs font-mono text-neutral-300 hover:bg-neutral-700"
-            >
-              {address?.slice(0, 6)}…{address?.slice(-4)}
-            </button>
-          ) : (
-            <button
-              onClick={() => connectors[0] && connect({ connector: connectors[0] })}
-              className="rounded-md bg-white px-4 py-1.5 text-xs font-medium text-black hover:bg-neutral-200"
-            >
-              Connect
-            </button>
-          )}
+          <span className="rounded-md bg-neutral-800 px-3 py-1.5 text-xs text-neutral-400">
+            Arc Testnet
+          </span>
         </div>
       </div>
     </header>
