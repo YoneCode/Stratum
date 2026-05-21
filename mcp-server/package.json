@@ -1,0 +1,8 @@
+{
+  "name": "@stratum/mcp-server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node src/index.js" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.0.0", "viem": "^2.50.0" }
+}

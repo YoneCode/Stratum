@@ -1,0 +1,8 @@
+{
+  "name": "@stratum/x402-server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node src/index.js", "dev": "node --watch src/index.js" },
+  "dependencies": { "express": "^4.21.0", "viem": "^2.50.0" }
+}
