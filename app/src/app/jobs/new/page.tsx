@@ -2,8 +2,9 @@
 
 import { usePrivy } from "@privy-io/react-auth";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function NewJobPage() {
+function JobForm() {
   const { authenticated, login, user } = usePrivy();
   const params = useSearchParams();
   const prefillProvider = params.get("provider") || "";
@@ -67,5 +68,13 @@ export default function NewJobPage() {
         <p className="text-xs text-neutral-600 text-center">Transaction will be signed by your connected wallet via Privy.</p>
       </form>
     </main>
+  );
+}
+
+export default function NewJobPage() {
+  return (
+    <Suspense fallback={<main className="mx-auto max-w-3xl px-6 py-20"><h1 className="text-4xl font-black">Loading...</h1></main>}>
+      <JobForm />
+    </Suspense>
   );
 }
