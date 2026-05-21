@@ -86,7 +86,7 @@ async function fetchAgent(agentId: number): Promise<Agent | null> {
 
 export default async function AgentsPage() {
   // Fetch our known agent + a few recent ones to demonstrate
-  const knownIds = [17868]; // LegalBot
+  const knownIds = [17868, 17896, 17897]; // LegalBot, FXQuoter, Summarizer
   const agents = (await Promise.all(knownIds.map(fetchAgent))).filter(Boolean) as Agent[];
 
   return (
