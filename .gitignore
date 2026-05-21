@@ -42,3 +42,8 @@ Thumbs.db
 *.log
 logs/
 .claude/skills/
+
+# --- Internal (not for public repo) ----------------------------------------
+CLAUDE.md
+arc-dapp.md
+PROGRESS.md

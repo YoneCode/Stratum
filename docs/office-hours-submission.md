@@ -4,7 +4,7 @@
 
 | Field | Answer |
 |---|---|
-| **Email** | kr863742@gmail.com |
+| **Email** | <your-email> |
 | **Project name** | Stratum |
 | **One-line** | Stratum is the agent commerce stack on Arc — onchain identity (ERC-8004), escrowed jobs (ERC-8183), yield-bearing balances (USYC), instant FX (StableFX), and per-call API micropayments (x402/Gateway) — all in one product. |
 | **Token plan** | No token; platform fee in USDC (50 bps on completed jobs) |
