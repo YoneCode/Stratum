@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="relative">
-      {/* Hero — asymmetric, oversized number as compositional anchor */}
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-neutral-800">
         <div className="absolute -right-20 -top-20 text-[20rem] font-black text-neutral-900/40 select-none leading-none pointer-events-none" aria-hidden="true">
           8
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats bar — high-density proof above the fold */}
+      {/* Stats bar */}
       <section className="border-b border-neutral-800 bg-neutral-900/30">
         <div className="mx-auto max-w-6xl px-6 py-6 grid grid-cols-2 md:grid-cols-5 gap-6">
           {[
@@ -43,8 +43,8 @@ export default function Home() {
             { value: "3", label: "Agents registered" },
             { value: "5", label: "Proven txs on-chain" },
             { value: "$0.15", label: "Total gas cost" },
-          ].map((s) => (
-            <div key={s.label} className="text-center md:text-left">
+          ].map((s, i) => (
+            <div key={s.label} className={`text-center md:text-left stat-value stagger-${i + 1}`}>
               <p className="text-2xl font-black text-white">{s.value}</p>
               <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
             </div>
@@ -52,8 +52,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Primitives — 2-col with left accent border */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      {/* Primitives */}
+      <section className="mx-auto max-w-6xl px-6 py-20 reveal">
         <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">What makes this rare</p>
         <h2 className="mt-3 text-3xl font-black">8 Arc/Circle primitives in one flow</h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -63,11 +63,11 @@ export default function Home() {
             { name: "ERC-8004 Reputation", desc: "giveFeedback fires on every completed job. On-chain signals." },
             { name: "ERC-8004 Validation", desc: "TEE attestation oracle for agent output verification." },
             { name: "ERC-8183 Commerce", desc: "Job escrow. Open→Funded→Submitted→Completed." },
-            { name: "USYC Yield", desc: "Idle USDC → T-bill yield. Atomic redeem to fund jobs." },
+            { name: "USYC Yield", desc: "Idle USDC → T-bill yield. Atomic redeem to fund jobs. Awaiting allowlist — activates automatically." },
             { name: "StableFX", desc: "Pay in EURC, escrow in USDC. RFQ-based FX routing." },
             { name: "x402 Nanopayments", desc: "Per-call API billing. EIP-3009 signed, batch-settled." },
           ].map((p, i) => (
-            <div key={p.name} className="flex gap-4 py-3 border-l-2 border-neutral-800 pl-4 hover:border-emerald-400 transition-colors">
+            <div key={p.name} className={`flex gap-4 py-3 border-l-2 border-neutral-800 pl-4 hover:border-emerald-400 transition-colors reveal-stagger stagger-${i + 1}`}>
               <span className="text-xs font-mono text-neutral-600 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="text-sm font-bold text-white">{p.name}</h3>
@@ -78,8 +78,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lifecycle — horizontal timeline feel */}
-      <section className="border-y border-neutral-800 bg-neutral-900/20">
+      {/* Lifecycle */}
+      <section className="border-y border-neutral-800 bg-neutral-900/20 reveal">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Proven on-chain</p>
           <h2 className="mt-3 text-3xl font-black">Job lifecycle in 5 steps</h2>
@@ -90,8 +90,8 @@ export default function Home() {
               { n: "3", title: "Fund", desc: "USDC locked in escrow. Can redeem from USYC yield atomically." },
               { n: "4", title: "Submit", desc: "Agent worker delivers. Submits hash on-chain." },
               { n: "5", title: "Complete", desc: "Escrow releases. Reputation hook fires giveFeedback." },
-            ].map((s) => (
-              <div key={s.n} className="relative">
+            ].map((s, i) => (
+              <div key={s.n} className={`relative reveal-stagger stagger-${i + 1}`}>
                 <div className="w-8 h-8 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-xs font-bold text-emerald-400">{s.n}</div>
                 <h3 className="mt-3 text-sm font-bold text-white">{s.title}</h3>
                 <p className="mt-1 text-xs text-neutral-500 leading-relaxed">{s.desc}</p>
@@ -101,8 +101,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contracts table — compact */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      {/* Contracts */}
+      <section className="mx-auto max-w-6xl px-6 py-20 reveal">
         <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Deployed on Arc Testnet (5042002)</p>
         <h2 className="mt-3 text-3xl font-black">8 contracts. All verifiable.</h2>
         <div className="mt-8 space-y-2">
@@ -115,8 +115,8 @@ export default function Home() {
             ["YieldVault", "0x6c238E2440AcCbD8Ab94b63B887506784c0a7be6", "USDC↔USYC yield"],
             ["FXRouter", "0xB73e52b71B5E5edd684E61a50569c6c024726983", "EURC→USDC swap"],
             ["NanopaymentSettlement", "0xd88371e75855B0f3b81BCB6D777fEC8207F7d4Cb", "x402 batch settlement"],
-          ].map(([name, addr, desc]) => (
-            <a key={addr} href={`https://testnet.arcscan.app/address/${addr}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3 hover:border-emerald-400/40 transition-colors group">
+          ].map(([name, addr, desc], i) => (
+            <a key={addr} href={`https://testnet.arcscan.app/address/${addr}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3 hover:border-emerald-400/40 transition-colors group reveal-stagger stagger-${i + 1}`}>
               <div className="flex items-center gap-4">
                 <span className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">{name}</span>
                 <span className="text-xs text-neutral-600 hidden md:inline">{desc}</span>
@@ -127,8 +127,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* x402 + MCP — side by side */}
-      <section className="border-y border-neutral-800 bg-neutral-900/20">
+      {/* x402 + MCP */}
+      <section className="border-y border-neutral-800 bg-neutral-900/20 reveal">
         <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Micropayments</p>
@@ -140,7 +140,7 @@ export default function Home() {
                 { ep: "/fxquote", price: "$0.0005" },
                 { ep: "/translate", price: "$0.002" },
               ].map((e) => (
-                <div key={e.ep} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1">
+                <div key={e.ep} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 hover:border-emerald-400 transition-colors">
                   <code className="text-sm text-emerald-400">{e.ep}</code>
                   <span className="text-xs text-neutral-600">{e.price}</span>
                 </div>
@@ -157,7 +157,7 @@ export default function Home() {
                 { tool: "postJob", desc: "Generate createJob calldata" },
                 { tool: "checkYield", desc: "Read YieldVault balance" },
               ].map((t) => (
-                <div key={t.tool} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1">
+                <div key={t.tool} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 hover:border-emerald-400 transition-colors">
                   <code className="text-sm text-emerald-400">{t.tool}</code>
                   <span className="text-xs text-neutral-600">{t.desc}</span>
                 </div>
@@ -167,8 +167,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Onchain proof — bottom, high trust signal */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      {/* Onchain proof */}
+      <section className="mx-auto max-w-6xl px-6 py-20 reveal">
         <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Verify everything</p>
         <h2 className="mt-3 text-3xl font-black">On-chain proof</h2>
         <div className="mt-8 space-y-2">
@@ -178,8 +178,8 @@ export default function Home() {
             { label: "Agent #17868 registered (LegalBot)", tx: "0x71e47a83ee369557c5c5d3650e72cf240fb5be7f0ee1b0edb9d5783b1fbe5448" },
             { label: "Agent #17896 registered (FXQuoter)", tx: "0xd00c326aba6d3d22a2e4114be57bbd18acec22d39c560791e665158d50730667" },
             { label: "Agent #17897 registered (Summarizer)", tx: "0xc051f4ae267559e22c267afecc0d497478bb6766e08f315fc3f478950fe15eca" },
-          ].map((p) => (
-            <a key={p.tx} href={`https://testnet.arcscan.app/tx/${p.tx}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3.5 hover:border-emerald-400/40 transition-colors group">
+          ].map((p, i) => (
+            <a key={p.tx} href={`https://testnet.arcscan.app/tx/${p.tx}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3.5 hover:border-emerald-400/40 transition-colors group reveal-stagger stagger-${i + 1}`}>
               <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">{p.label}</span>
               <span className="font-mono text-xs text-neutral-700 group-hover:text-emerald-400 transition-colors">{p.tx.slice(0, 10)}…</span>
             </a>
@@ -188,7 +188,7 @@ export default function Home() {
       </section>
 
       {/* Footer tech */}
-      <section className="border-t border-neutral-800">
+      <section className="border-t border-neutral-800 reveal-fade">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <div className="flex flex-wrap gap-2">
             {[
