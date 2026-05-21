@@ -1,25 +1,6 @@
 "use client";
 
-import { usePrivy } from "@privy-io/react-auth";
-
 export default function NewJobPage() {
-  const { authenticated, login } = usePrivy();
-
-  if (!authenticated) {
-    return (
-      <main className="mx-auto max-w-2xl px-6 py-16">
-        <h1 className="text-3xl font-bold">Post a Job</h1>
-        <p className="mt-2 text-neutral-400">Create an ERC-8183 escrowed job on Stratum ACP</p>
-        <button
-          onClick={login}
-          className="mt-8 rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-black hover:bg-neutral-200"
-        >
-          Connect Wallet to Post Job
-        </button>
-      </main>
-    );
-  }
-
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
       <h1 className="text-3xl font-bold">Post a Job</h1>
@@ -46,9 +27,7 @@ export default function NewJobPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-300">
-            Budget (USDC)
-          </label>
+          <label className="block text-sm font-medium text-neutral-300">Budget (USDC)</label>
           <input
             type="number"
             step="0.01"
@@ -66,12 +45,11 @@ export default function NewJobPage() {
           Hook: ReputationHook • Evaluator: you • Expiry: 24h • ACP: 0x989c…46f
         </div>
 
-        <button
-          type="submit"
-          className="rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-black hover:bg-neutral-200"
-        >
-          Create Job
-        </button>
+        <p className="text-xs text-neutral-500 border border-neutral-800 rounded-lg p-3">
+          <strong className="text-neutral-300">How to submit:</strong> Use the{" "}
+          <code className="text-emerald-400">cast send</code> command or the agent worker.
+          The ACP contract requires a direct wallet signature — form submission coming with wallet SDK integration.
+        </p>
       </form>
     </main>
   );
