@@ -101,6 +101,13 @@ _(none yet)_
 | 3 | Deploy StratumReputationHook (pointing at Stratum ACP) | DONE 2026-05-21 | `use-arc` | [`0xdB80FdA4…`](https://testnet.arcscan.app/tx/0x08baea44e0a52b1c372b3034f6e1d9e04826e7aa651e54cab9ededab87f79163) | Immutables: acp=Stratum ACP, reputation=ERC-8004, identity=ERC-8004 |
 | 4 | Full lifecycle WITH hook → giveFeedback fires | DONE 2026-05-21 | `use-arc` | [`0xb8ad3a12…`](https://testnet.arcscan.app/tx/0xb8ad3a1296b0b2abda6984d42d7a69c06061df6ffc48bc173f6bbd202f15dc99) | **6 events in complete tx**: JobCompleted + PaymentReleased + **NewFeedback** (0x8004B663…) + **FeedbackWritten** (hook). agentId=17868 received positive reputation ✅ |
 | 5 | `StratumValidationOracle.sol` (stub) + tests + deploy | DONE 2026-05-21 | `test-foundry`, `audit`, `gas-optimize`, `use-arc` | [`0xCfc99136…`](https://testnet.arcscan.app/address/0xCfc99136D2BB8DA1C4C457667B9Cd15c418b94C9) | 69 LoC; 11 tests (9 unit + 2 fuzz); 90/90 total. Single oracle EOA, owner can rotate. |
+| 6 | Next.js scaffold + Privy + wagmi + viem | DONE 2026-05-21 | `nextjs-shadcn`, `react-best-practices`, `use-arc` | n/a | Next.js 16.2.6; Arc chain config; builds cleanly; Privy graceful degradation without app ID |
+| 7 | Agent list (`/agents`) + reputation display | DONE 2026-05-21 | `react-best-practices` | n/a | Reads from ERC-8004 Identity + StratumAgentCard + Reputation; shows 3 agents with feedback count |
+| 8 | Job board (`/jobs`) + Post Job (`/jobs/new`) | DONE 2026-05-21 | `react-best-practices` | n/a | Server-side job list from ACP; client-side wallet-connected createJob form |
+| 9 | Dashboard (`/dashboard`) | DONE 2026-05-21 | `react-best-practices` | n/a | Shows connected wallet's jobs (client or provider role) |
+| 10 | Shared navigation header | DONE 2026-05-21 | `react-best-practices` | n/a | Sticky nav, wallet connect/disconnect, active route highlight |
+| 11 | Agent worker (Node.js poller) | DONE 2026-05-21 | n/a | n/a | Polls jobCounter, auto-submits for funded jobs assigned to worker |
+| 12 | 3 agents registered (LegalBot, FXQuoter, Summarizer) | DONE 2026-05-21 | `use-arc` | IDs: 17868, 17896, 17897 | All linked on StratumAgentCard with categories + tags |
 
 ### Blockers
 
@@ -143,7 +150,7 @@ _All addresses also live in `app/lib/contracts.ts` and `contracts/script/Deploy.
 
 | Item | Filed | Status | Notes |
 |---|---|---|---|
-| USYC allowlist (Circle Support) | _pending_ | _pending_ | File on Day 1 — 24-48h lead time |
+| USYC allowlist (Circle Support) | 2026-05-21 | FILED (Discord) | 24-48h lead time; deployer `0x057442C1…` |
 | Circle Console API key + Entity Secret | _pending_ | _pending_ | `console.circle.com` |
 | Pinata account (IPFS free tier) | _pending_ | _pending_ | for AgentCards + deliverables |
 | Goldsky project (free tier indexer) | _pending_ | _pending_ | week 2 |

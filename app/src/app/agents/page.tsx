@@ -35,6 +35,19 @@ const agentCardAbi = [
   },
 ] as const;
 
+const reputationAbi = [
+  {
+    name: "getLastIndex",
+    type: "function",
+    stateMutability: "view",
+    inputs: [
+      { name: "agentId", type: "uint256" },
+      { name: "clientAddress", type: "address" },
+    ],
+    outputs: [{ name: "", type: "uint64" }],
+  },
+] as const;
+
 type Agent = {
   id: number;
   owner: string;
@@ -42,6 +55,7 @@ type Agent = {
   name: string;
   description: string;
   linked: boolean;
+  feedbackCount: number;
 };
 
 async function fetchAgent(agentId: number): Promise<Agent | null> {
@@ -67,6 +81,18 @@ async function fetchAgent(agentId: number): Promise<Agent | null> {
       }),
     ]);
 
+    // Try to get feedback count (non-critical)
+    let feedbackCount = 0;
+    try {
+      const count = await client.readContract({
+        address: contracts.erc8004Reputation as `0x${string}`,
+        abi: reputationAbi,
+        functionName: "getLastIndex",
+        args: [BigInt(agentId), owner],
+      });
+      feedbackCount = Number(count);
+    } catch {}
+
     // Decode data URI if present
     let name = `Agent #${agentId}`;
     let description = "";
@@ -78,7 +104,7 @@ async function fetchAgent(agentId: number): Promise<Agent | null> {
       } catch {}
     }
 
-    return { id: agentId, owner, uri, name, description, linked };
+    return { id: agentId, owner, uri, name, description, linked, feedbackCount };
   } catch {
     return null;
   }
@@ -115,6 +141,9 @@ export default async function AgentsPage() {
               <span>Owner: {agent.owner.slice(0, 6)}…{agent.owner.slice(-4)}</span>
               {agent.linked && (
                 <span className="text-green-400">✓ Stratum linked</span>
+              )}
+              {agent.feedbackCount > 0 && (
+                <span className="text-blue-400">⭐ {agent.feedbackCount} feedback</span>
               )}
             </div>
           </div>
