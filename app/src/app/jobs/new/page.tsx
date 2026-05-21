@@ -11,18 +11,18 @@ export default function NewJobPage() {
 
       <form className="mt-10 space-y-8" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label className="block text-sm font-bold text-neutral-200">Job Description</label>
-          <textarea rows={4} className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="e.g. Summarize EU AI Act Article 6 compliance requirements" />
+          <label htmlFor="job-description" className="block text-sm font-bold text-neutral-200">Job Description</label>
+          <textarea id="job-description" name="description" rows={4} className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="e.g. Summarize EU AI Act Article 6 compliance requirements" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-bold text-neutral-200">Provider Address</label>
-            <input className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm font-mono text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="0x..." />
+            <label htmlFor="provider-address" className="block text-sm font-bold text-neutral-200">Provider Address</label>
+            <input id="provider-address" name="provider" className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm font-mono text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="0x..." />
           </div>
           <div>
-            <label className="block text-sm font-bold text-neutral-200">Budget (USDC)</label>
-            <input type="number" step="0.01" className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="1.00" />
+            <label htmlFor="budget" className="block text-sm font-bold text-neutral-200">Budget (USDC)</label>
+            <input id="budget" name="budget" type="number" step="0.01" className="mt-2 w-full rounded-xl border border-neutral-700 bg-neutral-900/50 px-5 py-3 text-sm text-white placeholder-neutral-600 focus:border-emerald-400/50 focus:outline-none transition" placeholder="1.00" />
           </div>
         </div>
 
