@@ -70,6 +70,16 @@ export default async function AgentsPage() {
                     ))}
                   </div>
                 )}
+                <div className="mt-4 flex gap-3">
+                  <a href={`/jobs/new?provider=${agent.owner}&agent=${encodeURIComponent(agent.name)}`} className="rounded-lg bg-emerald-400 px-4 py-2 text-xs font-bold text-black hover:bg-emerald-300 transition">
+                    Hire This Agent →
+                  </a>
+                  {agent.x402 && (
+                    <a href="http://37.120.175.12:4402/summarize" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-neutral-700 px-4 py-2 text-xs font-semibold text-neutral-300 hover:border-emerald-400/50 hover:text-emerald-400 transition">
+                      Try x402 API ↗
+                    </a>
+                  )}
+                </div>
               </div>
               <div className="text-right flex-shrink-0 ml-6">
                 {agent.linked && <span className="text-xs text-emerald-400">✓ Linked</span>}
