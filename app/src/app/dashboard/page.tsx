@@ -1,34 +1,9 @@
-"use client";
-
-import { usePrivy } from "@privy-io/react-auth";
-
 export default function DashboardPage() {
-  const { authenticated, login, user } = usePrivy();
-  const addr = user?.wallet?.address;
-
-  if (!authenticated) {
-    return (
-      <main className="mx-auto max-w-6xl px-6 py-20">
-        <div className="border-b border-neutral-800 pb-8">
-          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Your Account</p>
-          <h1 className="mt-2 text-4xl font-black">Dashboard</h1>
-        </div>
-        <div className="mt-10 text-center py-16">
-          <p className="text-neutral-400">Connect your wallet to view your dashboard.</p>
-          <button onClick={login} className="mt-6 rounded-lg bg-emerald-400 px-6 py-3 text-sm font-bold text-black hover:bg-emerald-300 transition">
-            Connect Wallet
-          </button>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="mx-auto max-w-6xl px-6 py-20">
       <div className="border-b border-neutral-800 pb-8">
         <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">Your Account</p>
         <h1 className="mt-2 text-4xl font-black">Dashboard</h1>
-        <p className="mt-2 text-sm font-mono text-neutral-600">{addr}</p>
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -45,7 +20,7 @@ export default function DashboardPage() {
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/30 p-6">
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">FX Router</p>
           <h2 className="mt-4 text-xl font-black text-white">EURC → USDC</h2>
-          <p className="mt-2 text-sm text-neutral-500">Deposit EURC → StableFX swaps to USDC → fund jobs.</p>
+          <p className="mt-2 text-sm text-neutral-500">Deposit EURC → StableFX swaps → fund jobs in USDC.</p>
           <a href="https://testnet.arcscan.app/address/0xB73e52b71B5E5edd684E61a50569c6c024726983" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-xs font-mono text-neutral-700 hover:text-emerald-400 transition">FXRouter ↗</a>
         </div>
 

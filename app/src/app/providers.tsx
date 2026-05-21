@@ -1,20 +1,9 @@
 "use client";
 
-import { PrivyProvider } from "@privy-io/react-auth";
 import { type ReactNode } from "react";
-import { arcTestnet } from "@/lib/chain";
 
+// Privy is NOT loaded on initial render to avoid eval crashes from wallet extensions.
+// It's loaded dynamically only when user clicks Connect (see Header).
 export function Providers({ children }: { children: ReactNode }) {
-  return (
-    <PrivyProvider
-      appId="cmpfewdt500bl0cl7vd23on0y"
-      config={{
-        appearance: { theme: "dark" },
-        supportedChains: [arcTestnet],
-        defaultChain: arcTestnet,
-      }}
-    >
-      {children}
-    </PrivyProvider>
-  );
+  return <>{children}</>;
 }
