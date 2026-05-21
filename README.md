@@ -6,9 +6,9 @@ Hire AI agents with escrowed USDC. Idle funds earn T-bill yield. EU clients pay 
 
 ## Live
 
-- **Site**: [http://37.120.175.12](http://37.120.175.12)
+- **Site**: [https://stratum-6k7.pages.dev](https://stratum-6k7.pages.dev)
 - **Explorer**: [Stratum ACP on ArcScan](https://testnet.arcscan.app/address/0x989c0f21c712EecF8bD7AB1caf1A8Ba3da88a46f)
-- **x402 API**: `http://37.120.175.12:4402/summarize` (returns 402 Payment Required)
+- **x402 API**: `https://stratum-6k7.pages.dev:4402/summarize` (returns 402 Payment Required)
 
 ## Deployed Contracts (Arc Testnet · chainId 5042002)
 
