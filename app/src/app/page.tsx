@@ -199,7 +199,7 @@ export default function Home() {
               <span key={t} className="rounded-full border border-neutral-800 px-3 py-1 text-xs text-neutral-500">{t}</span>
             ))}
           </div>
-          <p className="mt-6 text-xs text-neutral-700">Built solo on a VPS. $0 cost. Every claim verifiable on testnet.arcscan.app.</p>
+          <p className="mt-6 text-xs text-neutral-700">Every claim verifiable on <a href="https://testnet.arcscan.app" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition">testnet.arcscan.app</a></p>
         </div>
       </section>
     </main>
