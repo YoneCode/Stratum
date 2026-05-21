@@ -54,7 +54,7 @@ export function Header() {
               {address.slice(0, 6)}…{address.slice(-4)}
             </span>
           ) : (
-            <button onClick={handleConnect} className="rounded-md bg-emerald-400 px-4 py-1.5 text-xs font-bold text-black hover:bg-emerald-300 transition">
+            <button onClick={handleConnect} className="rounded-md bg-emerald-400 px-4 py-1.5 text-xs font-bold text-black btn-press">
               Connect
             </button>
           )}

@@ -10,23 +10,23 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-6xl px-6 py-28 md:py-36 relative z-10">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 hero-enter hero-enter-1">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-mono uppercase tracking-widest text-emerald-400">Live on Arc Testnet · 8 Primitives · 8 Contracts</span>
             </div>
-            <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-tight leading-[0.95]">
+            <h1 className="mt-6 text-5xl md:text-7xl font-black tracking-tight leading-[0.95] hero-enter hero-enter-2">
               Agent commerce,<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">settled on Arc.</span>
             </h1>
-            <p className="mt-8 text-lg text-neutral-400 leading-relaxed max-w-xl">
+            <p className="mt-8 text-lg text-neutral-400 leading-relaxed max-w-xl hero-enter hero-enter-3">
               One product. Hire AI agents with escrowed USDC. Idle funds earn T-bill yield.
               EU clients pay in EURC. API calls billed per-request. Reputation on-chain.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/agents" className="group rounded-lg bg-emerald-400 px-6 py-3.5 text-sm font-bold text-black transition hover:bg-emerald-300">
+            <div className="mt-10 flex flex-wrap gap-4 hero-enter hero-enter-4">
+              <Link href="/agents" className="group rounded-lg bg-emerald-400 px-6 py-3.5 text-sm font-bold text-black btn-press">
                 Browse Agents <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
               </Link>
-              <a href="https://testnet.arcscan.app/address/0x989c0f21c712EecF8bD7AB1caf1A8Ba3da88a46f" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-neutral-700 px-6 py-3.5 text-sm font-semibold text-neutral-200 transition hover:border-emerald-400/50 hover:text-emerald-400">
+              <a href="https://testnet.arcscan.app/address/0x989c0f21c712EecF8bD7AB1caf1A8Ba3da88a46f" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-neutral-700 px-6 py-3.5 text-sm font-semibold text-neutral-200 btn-press hover:border-emerald-400/50 hover:text-emerald-400">
                 Verify on ArcScan ↗
               </a>
             </div>
@@ -67,7 +67,7 @@ export default function Home() {
             { name: "StableFX", desc: "Pay in EURC, escrow in USDC. RFQ-based FX routing." },
             { name: "x402 Nanopayments", desc: "Per-call API billing. EIP-3009 signed, batch-settled." },
           ].map((p, i) => (
-            <div key={p.name} className={`flex gap-4 py-3 border-l-2 border-neutral-800 pl-4 hover:border-emerald-400 transition-colors reveal-stagger stagger-${i + 1}`}>
+            <div key={p.name} className={`flex gap-4 py-3 border-l-2 border-neutral-800 pl-4 border-accent reveal-stagger stagger-${i + 1}`}>
               <span className="text-xs font-mono text-neutral-600 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="text-sm font-bold text-white">{p.name}</h3>
@@ -116,7 +116,7 @@ export default function Home() {
             ["FXRouter", "0xB73e52b71B5E5edd684E61a50569c6c024726983", "EURC→USDC swap"],
             ["NanopaymentSettlement", "0xd88371e75855B0f3b81BCB6D777fEC8207F7d4Cb", "x402 batch settlement"],
           ].map(([name, addr, desc], i) => (
-            <a key={addr} href={`https://testnet.arcscan.app/address/${addr}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3 hover:border-emerald-400/40 transition-colors group reveal-stagger stagger-${i + 1}`}>
+            <a key={addr} href={`https://testnet.arcscan.app/address/${addr}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3 row-glow group reveal-stagger stagger-${i + 1}`}>
               <div className="flex items-center gap-4">
                 <span className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">{name}</span>
                 <span className="text-xs text-neutral-600 hidden md:inline">{desc}</span>
@@ -140,7 +140,7 @@ export default function Home() {
                 { ep: "/fxquote", price: "$0.0005" },
                 { ep: "/translate", price: "$0.002" },
               ].map((e) => (
-                <div key={e.ep} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 hover:border-emerald-400 transition-colors">
+                <div key={e.ep} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 border-accent">
                   <code className="text-sm text-emerald-400">{e.ep}</code>
                   <span className="text-xs text-neutral-600">{e.price}</span>
                 </div>
@@ -157,7 +157,7 @@ export default function Home() {
                 { tool: "postJob", desc: "Generate createJob calldata" },
                 { tool: "checkYield", desc: "Read YieldVault balance" },
               ].map((t) => (
-                <div key={t.tool} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 hover:border-emerald-400 transition-colors">
+                <div key={t.tool} className="flex items-center justify-between border-l-2 border-neutral-800 pl-4 py-1 border-accent">
                   <code className="text-sm text-emerald-400">{t.tool}</code>
                   <span className="text-xs text-neutral-600">{t.desc}</span>
                 </div>
@@ -179,7 +179,7 @@ export default function Home() {
             { label: "Agent #17896 registered (FXQuoter)", tx: "0xd00c326aba6d3d22a2e4114be57bbd18acec22d39c560791e665158d50730667" },
             { label: "Agent #17897 registered (Summarizer)", tx: "0xc051f4ae267559e22c267afecc0d497478bb6766e08f315fc3f478950fe15eca" },
           ].map((p, i) => (
-            <a key={p.tx} href={`https://testnet.arcscan.app/tx/${p.tx}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3.5 hover:border-emerald-400/40 transition-colors group reveal-stagger stagger-${i + 1}`}>
+            <a key={p.tx} href={`https://testnet.arcscan.app/tx/${p.tx}`} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-between rounded-lg border border-neutral-800 bg-neutral-900/30 px-5 py-3.5 row-glow group reveal-stagger stagger-${i + 1}`}>
               <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">{p.label}</span>
               <span className="font-mono text-xs text-neutral-700 group-hover:text-emerald-400 transition-colors">{p.tx.slice(0, 10)}…</span>
             </a>

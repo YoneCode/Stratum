@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+/* ─── Easing tokens ───────────────────────────────────────────────────── */
+:root {
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Hero entrance (page-load choreography) ──────────────────────────── */
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-enter {
+  opacity: 0;
+  animation: heroFadeUp 0.7s var(--ease-out-expo) forwards;
+}
+.hero-enter-1 { animation-delay: 0ms; }
+.hero-enter-2 { animation-delay: 120ms; }
+.hero-enter-3 { animation-delay: 240ms; }
+.hero-enter-4 { animation-delay: 400ms; }
+
 /* ─── Scroll-driven reveal animations ─────────────────────────────────── */
 
 @keyframes fadeSlideUp {
@@ -12,74 +34,49 @@
   to { opacity: 1; }
 }
 
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes staggerIn {
   from { opacity: 0; transform: translateX(-12px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Reveal on scroll — uses animation-timeline where supported */
 .reveal {
   opacity: 0;
-  animation: fadeSlideUp 0.6s ease-out forwards;
+  animation: fadeSlideUp 0.6s var(--ease-out-quart) forwards;
   animation-timeline: view();
   animation-range: entry 0% entry 30%;
 }
 
 .reveal-fade {
   opacity: 0;
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.5s var(--ease-out-quart) forwards;
   animation-timeline: view();
   animation-range: entry 0% entry 25%;
 }
 
 .reveal-stagger {
   opacity: 0;
-  animation: staggerIn 0.4s ease-out forwards;
+  animation: staggerIn 0.4s var(--ease-out-quart) forwards;
   animation-timeline: view();
   animation-range: entry 0% entry 20%;
 }
 
-/* Fallback for browsers without scroll-driven animations */
-@supports not (animation-timeline: view()) {
-  .reveal, .reveal-fade, .reveal-stagger {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-fade, .reveal-stagger {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-/* ─── Stats counter animation ─────────────────────────────────────────── */
-
 .stat-value {
-  animation: countUp 0.5s ease-out forwards;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s var(--ease-out-expo) forwards;
   animation-timeline: view();
   animation-range: entry 0% entry 40%;
 }
 
+/* Fallback for unsupported browsers */
 @supports not (animation-timeline: view()) {
-  .stat-value { opacity: 1; transform: none; animation: none; }
+  .reveal, .reveal-fade, .reveal-stagger, .stat-value {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .stat-value { opacity: 1; transform: none; animation: none; }
-}
-
-/* ─── Stagger delays for contract rows ────────────────────────────────── */
-
+/* ─── Stagger delays ──────────────────────────────────────────────────── */
 .stagger-1 { animation-delay: 0ms; }
 .stagger-2 { animation-delay: 60ms; }
 .stagger-3 { animation-delay: 120ms; }
@@ -89,8 +86,71 @@
 .stagger-7 { animation-delay: 360ms; }
 .stagger-8 { animation-delay: 420ms; }
 
-/* ─── Base ────────────────────────────────────────────────────────────── */
+/* ─── Micro-interactions ──────────────────────────────────────────────── */
 
+/* Buttons — scale feedback */
+.btn-press {
+  transition: transform 150ms var(--ease-out-quart), background-color 200ms;
+}
+.btn-press:hover { transform: scale(1.03); }
+.btn-press:active { transform: scale(0.97); }
+
+/* Interactive rows — border glow on hover */
+.row-glow {
+  transition: border-color 250ms var(--ease-out-quart), box-shadow 250ms var(--ease-out-quart);
+}
+.row-glow:hover {
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.05), 0 2px 8px rgba(52, 211, 153, 0.04);
+}
+
+/* Left border accent — smooth color on hover */
+.border-accent {
+  transition: border-color 200ms var(--ease-out-quart);
+}
+.border-accent:hover {
+  border-left-color: rgb(52, 211, 153);
+}
+
+/* Form focus glow */
+.input-glow {
+  transition: border-color 200ms var(--ease-out-quart), box-shadow 200ms var(--ease-out-quart);
+}
+.input-glow:focus {
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.08);
+}
+
+/* Link underline slide */
+.link-slide {
+  position: relative;
+}
+.link-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgb(52, 211, 153);
+  transition: width 250ms var(--ease-out-quart);
+}
+.link-slide:hover::after {
+  width: 100%;
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-fade, .reveal-stagger, .stat-value, .hero-enter {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .btn-press:hover, .btn-press:active { transform: none; }
+  .row-glow:hover { box-shadow: none; }
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────── */
 body {
   background: #0a0a0a;
   color: #ededed;
