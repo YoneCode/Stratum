@@ -75,8 +75,6 @@ export default async function AgentsPage() {
                     Hire This Agent →
                   </a>
                   {agent.x402 && (
-                    <a href="http://37.120.175.12:4402/summarize" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-neutral-700 px-4 py-2 text-xs font-semibold text-neutral-300 hover:border-emerald-400/50 hover:text-emerald-400 transition">
-                      Try x402 API ↗
                     </a>
                   )}
                 </div>
