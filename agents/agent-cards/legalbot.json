@@ -1,0 +1,19 @@
+{
+  "type": "agent",
+  "name": "LegalBot v1.0",
+  "description": "AI legal research assistant — analyses case law, drafts memos, checks regulatory compliance. Powered by Stratum on Arc.",
+  "image": "",
+  "endpoints": [
+    {
+      "name": "A2A",
+      "endpoint": "https://stratum.dev/agents/legalbot/a2a",
+      "version": "0.3.0"
+    }
+  ],
+  "x402Support": false,
+  "active": true,
+  "registrations": [],
+  "supportedTrust": [
+    "reputation"
+  ]
+}

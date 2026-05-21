@@ -1,0 +1,55 @@
+# Stratum — Foundry configuration
+#
+# References:
+#   - arc-dapp.md §8 Tech Stack: Solidity ^0.8.28, OpenZeppelin ^5.0
+#   - .claude/skills/use-smart-contract-platform/SKILL.md: originally pinned evm_version = "paris"
+#     but Arc Testnet supports Cancun opcodes (TSTORE/TLOAD) — the shared ERC-8183 impl uses
+#     ReentrancyGuardTransient which requires them. Switched to "cancun" after EvmError: NotActivated.
+
+[profile.default]
+src = "src"
+test = "test"
+script = "script"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.28"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+fs_permissions = [
+  { access = "read", path = "./" }
+]
+remappings = [
+  "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+  "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+  "forge-std/=lib/forge-std/src/"
+]
+
+[fmt]
+line_length = 110
+tab_width = 4
+bracket_spacing = true
+int_types = "long"
+quote_style = "double"
+number_underscore = "thousands"
+
+# Default fuzz/invariant config; tune per-contract via FOUNDRY_PROFILE.
+[fuzz]
+runs = 256
+seed = "0x42"
+
+[invariant]
+runs = 64
+depth = 32
+fail_on_revert = false
+shrink_run_limit = 5000
+
+[rpc_endpoints]
+arc_testnet = "${ARC_TESTNET_RPC_URL}"
+
+[etherscan]
+# ArcScan verifier — placeholder until Week 1 deploy step confirms the
+# correct URL/key. arcscan currently exposes a Sourcify-compatible verifier;
+# see arc-dapp.md §16 (docs.arc.io/arc/tutorials/deploy-contracts).
+arc_testnet = { key = "${ARCSCAN_API_KEY}", url = "https://testnet.arcscan.app/api", chain = 5042002 }

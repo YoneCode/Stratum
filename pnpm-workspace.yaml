@@ -1,0 +1,7 @@
+packages:
+  - "app"
+  - "agents"
+  - "x402-server"
+  - "mcp-server"
+  - "indexer"
+  - "packages/*"
