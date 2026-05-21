@@ -38,7 +38,7 @@ export default function Home() {
             { name: "ERC-8004 Reputation", desc: "On-chain feedback signals. giveFeedback fires on every completed job." },
             { name: "ERC-8004 Validation", desc: "TEE attestation oracle for verifying agent outputs off-chain." },
             { name: "ERC-8183 Agentic Commerce", desc: "Job escrow with evaluator attestation. Open→Funded→Submitted→Completed." },
-            { name: "USYC Yield", desc: "Idle USDC auto-deposits to T-bill yield via Teller. Atomic redeem on fund." },
+            { name: "USYC Yield", desc: "Idle USDC auto-deposits to T-bill yield via Teller. Atomic redeem on fund. Status: awaiting Circle allowlist — activates automatically once approved." },
             { name: "StableFX", desc: "Pay in EURC, escrow in USDC. RFQ-based FX via relayer pattern." },
             { name: "x402 Nanopayments", desc: "Per-call API billing. EIP-3009 signed, batch-settled on-chain." },
           ].map((p) => (

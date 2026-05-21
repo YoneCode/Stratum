@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { usePrivy } from "@privy-io/react-auth";
 
 const NAV_ITEMS = [
   { href: "/agents", label: "Agents" },
@@ -12,6 +13,9 @@ const NAV_ITEMS = [
 
 export function Header() {
   const pathname = usePathname();
+  const { login, logout, authenticated, user } = usePrivy();
+
+  const displayAddr = user?.wallet?.address;
 
   return (
     <header className="border-b border-neutral-800 bg-neutral-950/80 backdrop-blur-sm sticky top-0 z-50">
@@ -36,10 +40,23 @@ export function Header() {
             ))}
           </nav>
         </div>
-        <div>
-          <span className="rounded-md bg-neutral-800 px-3 py-1.5 text-xs text-neutral-400">
-            Arc Testnet
-          </span>
+        <div className="flex items-center gap-3">
+          <span className="rounded-md bg-neutral-800 px-2 py-1 text-xs text-neutral-500">Arc Testnet</span>
+          {authenticated ? (
+            <button
+              onClick={logout}
+              className="rounded-md bg-neutral-800 px-3 py-1.5 text-xs font-mono text-neutral-300 hover:bg-neutral-700"
+            >
+              {displayAddr ? `${displayAddr.slice(0, 6)}…${displayAddr.slice(-4)}` : "Connected"}
+            </button>
+          ) : (
+            <button
+              onClick={login}
+              className="rounded-md bg-white px-4 py-1.5 text-xs font-medium text-black hover:bg-neutral-200"
+            >
+              Connect
+            </button>
+          )}
         </div>
       </div>
     </header>
