@@ -1,0 +1,13 @@
+{
+  "name": "@stratum/agent-worker",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=../.env src/worker.js",
+    "dev": "node --watch --env-file=../.env src/worker.js"
+  },
+  "dependencies": {
+    "viem": "^2.50.0"
+  }
+}
